@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    options {
+        skipDefaultCheckout()
+        disableConcurrentBuilds()
+    }
+    environment {
+        CC = 'dodo'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                
+                echo "sth is --- ${CC}"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                echo "Running ${env.BUILD_ID} on sysVar JENKINS_HOME -- ${env.JENKINS_HOME}"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
